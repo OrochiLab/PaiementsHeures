@@ -35,17 +35,18 @@ if(isset($_POST['cin']))
 	?>
 	
 	</table>
-	<form action="details_heures" method="post">
+	<form action="?page=details_heures" method="post">
 	<pre>
-Heures   : <input type="radio" name="htype" value="sup" /> Supplémentaires <input type="radio" name="htype" value="vac"/> Vacation
+Heures   : <input type="radio" name="htype" value="sup" checked="checked"/> Supplémentaires <input type="radio" name="htype" value="vac"/> Vacation
 
-Semestre : <input type="radio" name="semestre" value="s1"/> 1 <input type="radio" name="semestre" value="s2" /> 2
+Semestre : <input type="radio" name="semestre" value="s1" checked="checked"/> 1 <input type="radio" name="semestre" value="s2" /> 2
 
 Année    : <select name="annee">
-<option value="2014">2014</option>
-<option value="2015">2015</option>
+<option value="2013/2014">2013/2014</option>
+<option value="2014/2015">2014/2015</option>
 </select>
 <input type="hidden" name="cin" value="<?php echo $prof->getCin(); ?>" />
+<input type="hidden" name="id_prof" value="<?php echo $prof->getId(); ?>" />
 <input type="submit" value="Valider" />
 
 	</pre>

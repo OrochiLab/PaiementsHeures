@@ -60,6 +60,10 @@ require_once('Metier/Responsable.class.php');
 			include_once('includes/details_heures.php');
 			break;
 			
+			case 'details_heures':
+			include_once('includes/details_heures.php');
+			break;
+			
 			default:
 			include_once('includes/accueil.php');
 			break;
