@@ -112,9 +112,9 @@
 				$this->Cell(110);
 				$this->MultiCell(0,0,$this->Rect(10, 95, 170, 50));
 				$this->SetXY(10,210);
-				$this->MultiCell(0,0,utf8_decode("Arrêté le présent état a la somme de : SEIZE MILLE DEUX CENT DHS"));
+				$this->MultiCell(0,0,utf8_decode("Arrêté le présent état a la somme de : HUIT MILLES CENTS QUARANTE DHS"));
 				$this->ln(5);
-				$this->MultiCell(0,0,utf8_decode("Total à payer : DOUZE MILLE NEUF CENT SOIXANTE DHS"));
+				$this->MultiCell(0,0,utf8_decode("Total à payer : SIX MILLE TREIZE DHS QURANTE QUATRE CENTIMES"));
 				//$this->MultiCell(0,)
 				$today = date('d/m/Y');
 				$tab = explode("/",$today);

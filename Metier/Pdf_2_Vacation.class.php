@@ -81,12 +81,21 @@
 				$this->SetXY($this->getX()+10,$this->getY()+12);
 				$this->SetFont("Times",'BI',13);
 				$this->MultiCell(0,5,"TRESORIER TRANSMIS AU");
-
 				$this->SetXY($this->getX()+30,$this->getY()+2);
 				$this->MultiCell(0,0,"PAYEUR");
 				$this->Cell(110);
 				$this->MultiCell(0,0,$this->Rect(100, 215, 90, 10));
-				$this->MultiCell(0,20,"");
+				$this->SetXY($this->getX()+110,$this->getY()-7);
+				$this->SetFont("Times",'BI',13);
+				$this->MultiCell(0,5,"MODE DE PAIEMENTS");
+				$this->SetFont('Arial','',12);
+				$this->SetXY($this->getX(),$this->getY()+5);
+				$this->MultiCell(0,5,"Date : 00/00/000");
+				$this->MultiCell(0,5,"Signature du sous ordonnateur:");
+				$this->SetXY($this->getX()+90,$this->getY()-10);
+				$this->MultiCell(0,5,utf8_decode("Date du réglement : 00/00/000"));
+				$this->SetXY($this->getX()+90,$this->getY());
+				$this->MultiCell(0,5,utf8_decode("Visa du Trésorier Payeur"));
 				$this->MultiCell(0,0,$this->Rect(10, 215, 90, 50));
 				$this->Cell(110);
 				$this->MultiCell(0,0,$this->Rect(100, 215, 90, 50));

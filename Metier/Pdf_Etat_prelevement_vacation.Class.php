@@ -45,13 +45,13 @@
 				//$this->SetFont('Times','',12);
 				$this->Ln(2);
 				$this->Cell(10);
-				$this->MultiCell(0,5,utf8_decode("Etat de"));
+				$this->MultiCell(0,5,utf8_decode("ETAT DE"));
 				$this->Cell(5);
-				$this->MultiCell(0,5,utf8_decode("Prelevement"));
+				$this->MultiCell(0,5,utf8_decode("PRELEVEMENT"));
 				$this->Cell(8);
-				$this->MultiCell(0,5,utf8_decode("Heure de"));
+				$this->MultiCell(0,5,utf8_decode("HEURES DE"));
 				$this->Cell(8);
-				$this->MultiCell(0,5,utf8_decode("vacation"));
+				$this->MultiCell(0,5,utf8_decode("VACATION"));
 				$this->Ln(3);
 				$this->setFont('Arial','B',10);
 				$this->Cell(5);
@@ -92,23 +92,26 @@
 
 				//deuxieme ligne
 				$this->setXY(65,102);
-				$this->Cell(10,6,"35%");
+				$this->Cell(10,6,"17%");
 				$this->setXY(95,102);
-				$this->Cell(10,6,"8640.00");
+				$this->Cell(10,6,"16200.00");
 				$this->setXY(125,102);
-				$this->Cell(10,6,"2626.56");
+				$this->Cell(10,6,"3240.00");
 				$this->setXY(155,102);
-				$this->Cell(10,6,"6013.44");
+				$this->Cell(10,6,"12960.00");
 
 				//Footer du tableau
 				$this->SetXY(40,137);
 				$this->Cell(10,6,"Total ");
+				$this->SetXY(70,137);
+				$this->Cell(10,6,"17% ");
 				$this->SetXY(100,137);
-				$this->Cell(10,6,"8640.00 ");
+				$this->SetXY(100,137);
+				$this->Cell(10,6,"16200.00");
 				$this->SetXY(130,137);
-				$this->Cell(10,6,"2626.56 ");
+				$this->Cell(10,6,"3240.00");
 				$this->SetXY(160,137);
-				$this->Cell(10,6,"6013.44 ");
+				$this->Cell(10,6,"129600.00");
 
 
 
