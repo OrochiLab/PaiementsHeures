@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 19 Novembre 2014 à 16:07
+-- Généré le: Lun 24 Novembre 2014 à 21:33
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `heures` (
   PRIMARY KEY (`id`),
   KEY `id_prof` (`id_prof`),
   KEY `id_eta` (`id_eta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `heures`
@@ -95,7 +95,14 @@ INSERT INTO `heures` (`id`, `date_jour`, `nbre_heure`, `type`, `tranches`, `id_p
 (6, '2014-11-19', 3, 'sup', ' 8h - 9h, 9h - 10h, 14h - 15h,', 1, 1),
 (7, '2014-11-20', 4, 'vac', ' 8h - 9h, 9h - 10h, 14h - 15h, 15h - 16h,', 2, 1),
 (8, '2014-11-22', 2, 'sup', ' 14h - 15h, 15h - 16h,', 1, 1),
-(9, '2014-11-19', 2, 'sup', ' 8h - 9h, 9h - 10h,', 1, 1);
+(9, '2014-11-19', 2, 'sup', ' 8h - 9h, 9h - 10h,', 1, 1),
+(10, '2014-11-23', 3, 'sup', ' 8h - 9h, 9h - 10h, 15h - 16h,', 1, 1),
+(11, '2014-11-25', 4, 'sup', ' 8h - 9h, 9h - 10h, 16h - 17h, 17h - 18h,', 1, 1),
+(12, '2014-12-09', 2, 'sup', ' 14h - 15h, 15h - 16h,', 1, 1),
+(13, '2015-01-06', 2, 'sup', ' 14h - 15h, 15h - 16h,', 1, 1),
+(14, '2015-10-13', 4, 'sup', ' 14h - 15h, 15h - 16h, 16h - 17h, 17h - 18h,', 1, 1),
+(15, '2015-02-04', 4, 'sup', ' 14h - 15h, 15h - 16h, 16h - 17h, 17h - 18h,', 1, 1),
+(16, '2014-11-24', 4, 'vac', ' 8h - 9h, 9h - 10h, 10h - 11h, 11h - 12h,', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -119,6 +126,36 @@ CREATE TABLE IF NOT EXISTS `logins` (
 
 INSERT INTO `logins` (`id`, `login`, `password`, `id_resp`) VALUES
 (1, 'hamza', 'hamza', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `mois`
+--
+
+CREATE TABLE IF NOT EXISTS `mois` (
+  `id` int(11) NOT NULL,
+  `libelle` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `mois`
+--
+
+INSERT INTO `mois` (`id`, `libelle`) VALUES
+(1, 'Janvier'),
+(2, 'Fevrier'),
+(3, 'Mars'),
+(4, 'Avril'),
+(5, 'Mai'),
+(6, 'Juin'),
+(7, 'Juillet'),
+(8, 'Août'),
+(9, 'Septembre'),
+(10, 'Octobre'),
+(11, 'Novembre'),
+(12, 'Decembre');
 
 -- --------------------------------------------------------
 
@@ -179,14 +216,15 @@ CREATE TABLE IF NOT EXISTS `responsables` (
   `prenom` varchar(20) NOT NULL,
   `type` enum('admin','secretaire') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `responsables`
 --
 
 INSERT INTO `responsables` (`id`, `nom`, `prenom`, `type`) VALUES
-(1, 'Kacimi', 'Hamza', 'admin');
+(1, 'Kacimi', 'Hamza', 'admin'),
+(2, 'Mohamed', 'Bounajma', 'admin');
 
 -- --------------------------------------------------------
 
@@ -235,8 +273,8 @@ ALTER TABLE `logins`
 -- Contraintes pour la table `professeurs`
 --
 ALTER TABLE `professeurs`
-  ADD CONSTRAINT `professeurs_ibfk_2` FOREIGN KEY (`id_eta`) REFERENCES `etablissements` (`id`),
-  ADD CONSTRAINT `professeurs_ibfk_1` FOREIGN KEY (`grade`) REFERENCES `grades` (`id`);
+  ADD CONSTRAINT `professeurs_ibfk_1` FOREIGN KEY (`grade`) REFERENCES `grades` (`id`),
+  ADD CONSTRAINT `professeurs_ibfk_2` FOREIGN KEY (`id_eta`) REFERENCES `etablissements` (`id`);
 
 --
 -- Contraintes pour la table `professeurs_activite`
