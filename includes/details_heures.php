@@ -3,7 +3,6 @@ if(isset($_POST['id_prof']))
 {
 $donnes = Heures::getBySem($_POST['id_prof'],$_POST['semestre'],$_POST['annee'],$_POST['htype']);
 $prof = Professeur::getProfesseur($_POST['cin']);
-print_r($donnes);
 ?>
 <table border="1">
 <tr>
@@ -54,7 +53,6 @@ for($i=0;$i<count($donnes);$i++)
 <td colspan="12" align="right"><strong>Total : <?php echo $total; ?></strong></td>
 </tr>
 </table>
-
 <?php
 }
 
