@@ -13,7 +13,7 @@ class Database
 		else
 		{
 			try{
-			self::$bdd = new PDO('mysql:host=localhost;dbname=paiements_prof','root','');
+			self::$bdd = new PDO('mysql:host=localhost;dbname=paeiments_prof','root','');
 			return self::$bdd;
 			}
 			catch(Exception $e)

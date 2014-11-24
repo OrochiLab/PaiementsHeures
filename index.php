@@ -5,8 +5,6 @@ require_once('Metier/Etablissement.class.php');
 require_once('Metier/Heures.class.php');
 require_once('Metier/Responsable.class.php');
 
-
-
 ?>
 
 
