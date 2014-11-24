@@ -25,7 +25,9 @@
 			    $this->MultiCell(00,8,utf8_decode('ensa-khouribga'));
 			    $this->Cell(130);
 			    $this->MultiCell(00,8,utf8_decode('Ordre de paiment'));
-			    $this->Ln(3);
+			    $this->Cell(130);
+			    $this->MultiCell(0,0,$this->Rect($this->getX(), $this->getY(), 30, 7));
+			    $this->Ln(6);
 			    $this->Cell(130);
 			    $this->MultiCell(00,8,utf8_decode("Sur Ordre de l'imputation"));
 			    $this->Cell(130);
@@ -50,65 +52,50 @@
 			}
 		
 			//print pdf demande
-
-			function print_certificat()
-			{	
+			function print_certificat($a,$b,$c,$d,$e,$f)
+			{	$tab = array('Excercice :  '.$a,'Article :  '.$b,'Paragraphe : '.$c,
+							'Ligne :  '.$d,'Rubriques Bugétaires :  '.$e,'Créancier :  '.$f,"Pièces Justificatifs :  ");
+				$piece = "-Etat des sommes dues\n-Fiche des reseignements\n-Arrêté\n-C.I.N\n-Autorisation" ;
+				$this->Ln(2);
 				$this->SetFont('Arial','B',10);
 				// Instanciation de la classe dérivée
 				$this->AliasNbPages();
 				$this->AddPage();
 				//$this->SetFont('Times','',12);
-				$this->Ln(0);
-				$this->Cell(5);
-				$this->MultiCell(0,10,utf8_decode("Exercice		:		"));
-				$this->Ln(3);
-				$this->Cell(5);
-				$this->MultiCell(0,10,utf8_decode("Article		:		"));
-				$this->Ln(3);
-				$this->Cell(5);
-				$this->MultiCell(0,10,utf8_decode("Paragraphe	:		"));
-				$this->Ln(3);
-				$this->Cell(5);
-				$this->MultiCell(0,10,utf8_decode("Ligne		:		"));
-				$this->Ln(3);
-				$this->Cell(5);
-				$this->MultiCell(0,10,utf8_decode("Rubrique Budgétaire:		"));
-				$this->Ln(3);
-				$this->Cell(5);
-				$this->MultiCell(0,10,utf8_decode("Créancier	:		"));
-				$this->Ln(3);
-				$this->Cell(5);
-				$this->MultiCell(0,10,utf8_decode("Pièces Justificatives:		"));
+				$pas=7;
+				foreach ($tab as $key ) {
+					$this->SetXY(10,115+$pas);
+					$this->Cell(0,0,utf8_decode($key));
+					$pas=$pas+7;
+				}
+				$this->SetXY($this->getX()-153,$this->getY());
 				$this->SetFont('Times','',10);
-				$this->Cell(70);
-				$this->MultiCell(0,10,utf8_decode("-Etat de prélèvement"));
+				$this->MultiCell(0,5,utf8_decode($piece));
+				$this->Ln(5);
+				$this->SetFont('Arial','B',10);
+				$this->MultiCell(0,5,"Montant de l'ordre de paiement :    6013.44");
+				$this->SetFont('Times','I',10);
+				$this->MultiCell(0,5,"SIX MILLE TREIZE DH QUARANTE QUATRE CENTIMES");
 
-				$this->setFont('Arial','B',10);
-				$this->Cell(5);
-				$this->MultiCell(0,0,utf8_decode("Total à payer :				1950.25DH"));
-				
-				$this->SetFont('Times','B',10);
-				$this->Cell(5);
-				$this->MultiCell(00,10,utf8_decode("DEUX MILLE SIX CENT VINGT SIX DHS CINQUANTE SIX CENTIMES"));
-				$this->MultiCell(0,0,"    TRANSMIS AU TRESORIER PAYEUR                                MODE DE PAIMENT");
-				$this->MultiCell(0,0,$this->Rect(10, 215, 90, 7));
-				
+				$this->MultiCell(0,0,$this->Rect(10, 215, 90, 10));
+				$this->SetXY($this->getX()+10,$this->getY()+12);
+				$this->SetFont("Times",'BI',13);
+				$this->MultiCell(0,5,"TRESORIER TRANSMIS AU");
+
+				$this->SetXY($this->getX()+30,$this->getY()+2);
+				$this->MultiCell(0,0,"PAYEUR");
 				$this->Cell(110);
-				$this->MultiCell(0,0,$this->Rect(100, 215, 90, 7));
-				$this->MultiCell(0,20,utf8_decode("    Date:                                                                                            Date du réglement: "));
+				$this->MultiCell(0,0,$this->Rect(100, 215, 90, 10));
+				$this->MultiCell(0,20,"");
 				$this->MultiCell(0,0,$this->Rect(10, 215, 90, 50));
 				$this->Cell(110);
 				$this->MultiCell(0,0,$this->Rect(100, 215, 90, 50));
-				//$this->MultiCell(0,)
-				$today = date('d/m/Y');
-				$tab = explode("/",$today);
-				
-				//$this->Output('doc.pdf');
 				$this->Output();
 			}
 		}
 
 		
 	$doc =  new PDF();
-	$doc->print_certificat();		
+
+	$doc->print_certificat('2010','I','20','10','Heure Supplémentaire','Enseignant');		
 ?>

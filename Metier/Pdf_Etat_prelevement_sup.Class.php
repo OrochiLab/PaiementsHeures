@@ -14,8 +14,12 @@
 			    $this->Cell(100);
 			    // Titre
 			    $this->Cell(30,10,utf8_decode('Ecole Nationale des Sciences Appliquées Khouribga'),10,0,'C');
+			    
 			    // Saut de ligne
-			    $this->Ln(20);
+			    $this->Ln(25);
+				
+
+
 			}
 
 			// Pied de page
@@ -41,14 +45,11 @@
 				//$this->SetFont('Times','',12);
 				$this->Ln(2);
 				$this->Cell(10);
-				$this->MultiCell(0,5,utf8_decode("Etat de"));
-				$this->Cell(5);
-				$this->MultiCell(0,5,utf8_decode("Prelevement"));
-				$this->Cell(8);
-				$this->MultiCell(0,5,utf8_decode("Heure de"));
-				$this->Cell(8);
-				$this->MultiCell(0,5,utf8_decode("vacation"));
+				$this->SetXY(75,80);
+				$this->Cell(0,0,utf8_decode("ETAT DE PRELEVEMENT"));
 				$this->Ln(3);
+				$this->SetXY(85,85);
+				$this->Cell(0,0,utf8_decode("HEURES SUP"));
 				$this->setFont('Arial','B',10);
 				$this->Cell(5);
 				$this->SetFont('Times','B',10);
@@ -67,13 +68,53 @@
 					$this->MultiCell(0,0,$this->Rect(120, 95, 30, 50));
 					$this->Cell(110);
 					$this->MultiCell(0,0,$this->Rect(150, 95, 30, 50));
-					
+
 					$this->MultiCell(0,0,$this->Line(10,95+$pas,180,95+$pas));
 					$this->ln(3);
 					$pas=$pas+7;
 				}
+				//header du tableau
+				$this->SetXY(15,95);
+				$this->Cell(10,6,"OP ");
+				$this->SetXY(35,95);
+				$this->Cell(10,6,utf8_decode("Bénéficiaire "));
+				$this->SetXY(65,95);
+				$this->Cell(10,6,"Taux IGR ");
+				$this->SetXY(95,95);
+				$this->Cell(10,6,"Montant Brut ");
+				$this->SetXY(125,95);
+				$this->Cell(10,6,utf8_decode("Impôt "));
+				$this->SetXY(155,95);
+				$this->Cell(10,6,"Montant NET ");
+
+				//deuxieme ligne
+				$this->setXY(65,102);
+				$this->Cell(10,6,"35%");
+				$this->setXY(95,102);
+				$this->Cell(10,6,"8640.00");
+				$this->setXY(125,102);
+				$this->Cell(10,6,"2626.56");
+				$this->setXY(155,102);
+				$this->Cell(10,6,"6013.44");
+
+				//Footer du tableau
+				$this->SetXY(40,137);
+				$this->Cell(10,6,"Total ");
+				$this->SetXY(100,137);
+				$this->Cell(10,6,"8640.00 ");
+				$this->SetXY(130,137);
+				$this->Cell(10,6,"2626.56 ");
+				$this->SetXY(160,137);
+				$this->Cell(10,6,"6013.44 ");
+
+
+
 				$this->Cell(110);
 				$this->MultiCell(0,0,$this->Rect(10, 95, 170, 50));
+				$this->SetXY(10,210);
+				$this->MultiCell(0,0,utf8_decode("Arrêté le présent état a la somme de : SEIZE MILLE DEUX CENT DHS"));
+				$this->ln(5);
+				$this->MultiCell(0,0,utf8_decode("Total à payer : DOUZE MILLE NEUF CENT SOIXANTE DHS"));
 				//$this->MultiCell(0,)
 				$today = date('d/m/Y');
 				$tab = explode("/",$today);
