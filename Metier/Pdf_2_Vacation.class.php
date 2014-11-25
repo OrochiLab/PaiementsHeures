@@ -52,7 +52,7 @@
 			}
 		
 			//print pdf demande
-			function print_certificat($a,$b,$c,$d,$e,$f)
+			function print_certificat($chemin,$a,$b,$c,$d,$e,$f,$montant)
 			{	
 				$tab = array('Excercice :  '.$a,'Article :  '.$b,'Paragraphe : '.$c,
 							'Ligne :  '.$d,'Rubriques Bugétaires :  '.$e,'Créancier :  '.$f,"Pièces Justificatifs :  ");
@@ -74,7 +74,7 @@
 					$this->MultiCell(0,5,utf8_decode($piece));
 					$this->Ln(5);
 					$this->SetFont('Arial','B',10);
-					$this->MultiCell(0,5,"Montant de l'ordre de paiement :    6013.44");
+					$this->MultiCell(0,5,"Montant de l'ordre de paiement :    ".$montant);
 					$this->SetFont('Times','I',10);
 					$this->MultiCell(0,5,"SIX MILLE TREIZE DH QUARANTE QUATRE CENTIMES");
 
@@ -91,16 +91,16 @@
 					$this->MultiCell(0,5,"MODE DE PAIEMENTS");
 					$this->SetFont('Arial','',12);
 					$this->SetXY($this->getX(),$this->getY()+5);
-					$this->MultiCell(0,5,"Date : 00/00/000");
+					$this->MultiCell(0,5,"Date : ");
 					$this->MultiCell(0,5,"Signature du sous ordonnateur:");
 					$this->SetXY($this->getX()+90,$this->getY()-10);
-					$this->MultiCell(0,5,utf8_decode("Date du réglement : 00/00/000"));
+					$this->MultiCell(0,5,utf8_decode("Date du réglement : "));
 					$this->SetXY($this->getX()+90,$this->getY());
 					$this->MultiCell(0,5,utf8_decode("Visa du Trésorier Payeur"));
 					$this->MultiCell(0,0,$this->Rect(10, 215, 90, 50));
 					$this->Cell(110);
 					$this->MultiCell(0,0,$this->Rect(100, 215, 90, 50));
-					$this->Output();
+					$this->Output($chemin,'F');
 			}
 		}
 

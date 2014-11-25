@@ -1,7 +1,7 @@
 <?php
 		require_once('../pdf/fpdf.php');
 		//require_once('../Metier/Etudiant.class.php');
-		class PDF_1 extends FPDF
+		class PDF_22 extends FPDF
 		{
 		// En-tête
 			function Header()
@@ -53,7 +53,8 @@
 		
 			//print pdf demande
 			function print_certificat($chemin,$a,$b,$c,$d,$e,$f,$montant)
-			{	
+			{
+				
 				$tab = array('Excercice :  '.$a,'Article :  '.$b,'Paragraphe : '.$c,
 							'Ligne :  '.$d,'Rubriques Bugétaires :  '.$e,'Créancier :  '.$f,"Pièces Justificatifs :  ");
 				$piece = "-Etat de prélévement" ;
