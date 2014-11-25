@@ -44,7 +44,7 @@ for($i=0;$i<count($donnes);$i++)
 	<?php 
 	}
 	?>
-	<td><?php echo 300*$donnes[$i]['total']; ?></td>
+	<td><?php echo $prof->getGrade()->getIndemnite()*$donnes[$i]['total']; ?></td>
 </tr>
 <?php
 }
