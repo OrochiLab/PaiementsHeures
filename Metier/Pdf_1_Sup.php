@@ -52,7 +52,7 @@
 			}
 		
 			//print pdf demande
-			function print_certificat($chemin,$a,$b,$c,$d,$e,$f,$montant)
+			function print_certificat($chemin,$a,$b,$c,$d,$e,$f,$frais)
 			{
 								$tab = array('Excercice :  '.$a,'Article :  '.$b,'Paragraphe : '.$c,
 							'Ligne :  '.$d,'Rubriques Bugétaires :  '.$e,'Créancier :  '.$f,"Pièces Justificatifs :  ");
@@ -74,7 +74,7 @@
 					$this->MultiCell(0,5,utf8_decode($piece));
 					$this->Ln(5);
 					$this->SetFont('Arial','B',10);
-					$this->MultiCell(0,5,"Montant de l'ordre de paiement :    6013.44");
+					$this->MultiCell(0,5,"Montant de l'ordre de paiement :    ".$frais['net']);
 					$this->SetFont('Times','I',10);
 					$this->MultiCell(0,5,"SIX MILLE TREIZE DH QUARANTE QUATRE CENTIMES");
 

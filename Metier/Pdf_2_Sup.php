@@ -52,7 +52,7 @@
 			}
 		
 			//print pdf demande
-			function print_certificat($chemin,$a,$b,$c,$d,$e,$f,$montant)
+			function print_certificat($chemin,$a,$b,$c,$d,$e,$f,$frais)
 			{
 				
 				$tab = array('Excercice :  '.$a,'Article :  '.$b,'Paragraphe : '.$c,
@@ -76,7 +76,7 @@
 				$this->Ln(5);
 				$this->SetFont('Arial','B',10);
 				$this->MultiCell(0,5,"Montant de l'ordre de paiement :    TROIS MILLEDEUX CENY QURANTE DHS");
-				$this->MultiCell(0,5,utf8_decode("Total à payer:                                      ".$montant));
+				$this->MultiCell(0,5,utf8_decode("Total à payer:                                      ".$frais['impot']));
 
 				$this->MultiCell(0,0,$this->Rect(10, 195, 90, 10));
 				$this->SetXY($this->getX()+10,$this->getY()+12);
