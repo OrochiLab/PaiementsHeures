@@ -31,29 +31,29 @@
 			}		
 
 	// Colored table
-	function FancyTable($data,$cin)
+	function FancyTable($chemin,$data,$cin,$nometprenom,$grade,$categorie,$ets,$som,$year,$som,$frais)
 	{	
+		$this->SetFont('Arial','',10);
+		$this->AddPage();
 		$this->Cell(0,0,"UNIVERSITE HASSAN 1ER SETTAT");
 		$this->Ln(3);
 		$this->SetXY($this->getX()+120,$this->getY()-3);
-		$this->MultiCell(0,0,"EX. du 01/01/2010 au 31/12/2010 ART.II");
-		$this->SetXY($this->getX()+145,$this->getY()+5);
+		$this->MultiCell(0,0,"EX. du ".$year." ART.II");
+		$this->SetXY($this->getX()+130,$this->getY()+5);
 		$this->Cell(0,0,"P:85L.10");
-		$this->SetXY($this->getX()-65,$this->getY()+5);
+		$this->SetXY($this->getX()-75,$this->getY()+5);
 		$this->Cell(0,0,utf8_decode("APPLICATION DECRET N°2.08.11"));
 		$this->SetXY($this->getX()-160,$this->getY()+5);
 		$this->SetFont('Times','BU',14);
 		$this->MultiCell(0,0,utf8_decode("Etat des sommes dues pour heures vacations"));
 		$this->Ln(6);
 		$this->SetFont('Arial','',10);
-		$this->MultiCell(0,5,utf8_decode("S.O.M :  988726"));
-		$this->MultiCell(0,5,utf8_decode("NOM & PRENOM :  FLAN"));
-		$this->MultiCell(0,5,utf8_decode("GRADE :  PROFESSEUR DE L'ENSEIGNEMENT SUPERIR ASSISTANT"));
-		$this->MultiCell(0,5,utf8_decode("CATEGORIE :  PES"));
-		$this->MultiCell(0,5,utf8_decode("MATIERE :  PA"));
-		$this->MultiCell(0,5,utf8_decode("ETABLISSEMENT D'ORIGINE :  FACULTE DES LETTRES DE BENI MELLAL"));
-		$this->MultiCell(0,5,utf8_decode("REFERENCE :  "));
-		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  54"));
+		$this->MultiCell(0,5,utf8_decode("S.O.M :  ".$som));
+		$this->MultiCell(0,5,utf8_decode("NOM & PRENOM :  ".$nometprenom));
+		$this->MultiCell(0,5,utf8_decode("GRADE :  ".$grade));
+		$this->MultiCell(0,5,utf8_decode("CATEGORIE :  ".$categorie));
+		$this->MultiCell(0,5,utf8_decode("ETABLISSEMENT D'ORIGINE :  ".$ets));
+		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  ".$frais['nbreHeures']));
 		$this->Ln(3);
 
 		$this->SetFont('Arial','',10);
@@ -95,10 +95,10 @@
 	    $this->SetXY($this->getX()+113,$this->getY()-2);
 	    $this->Cell(0,0,'TOTAL');
 	   	$this->SetXY($this->getX()-45,$this->getY());
-	    $this->Cell(0,0,'8640.00');
+	    $this->Cell(0,0,$frais['brut']);
 		$this->SetXY(10,$this->getY()+5);
 		$this->MultiCell(0,5,utf8_decode("Arrêté à la somme de : Huit milles siw quarante DHS"));
-		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT :  "));
+		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT :  ".$nometprenom));
 		$this->SetXY(75,$this->getY()+15);
 		$this->SetFont("Times","BU",12);
 		$this->MultiCell(0,5,utf8_decode("Décompte des heures vacation"));
@@ -114,29 +114,27 @@
 	    $this->SetTextColor(0);
 	    $this->SetFont('');
 
-	        $this->Cell($w[0],6,"8640.00",'LR',0,'C',$fill);
-			$this->Cell($w[1],6,"1728",'LR',0,'C',$fill);
-			$this->Cell($w[2],6,"6912.00",'LR',0,'C',$fill);
+	        $this->Cell($w[0],6,$frais['brut'],'LR',0,'C',$fill);
+			$this->Cell($w[1],6,$frais['impot'],'C',0,'C',$fill);
+			$this->Cell($w[2],6,$frais['net'],'LR',0,'C',$fill);
 			$this->Ln();
 	        $fill = !$fill;
 	    $this->Cell(array_sum($w),0,'','T');
 	    $this->Ln(4);
 	    $this->Cell(0,0,utf8_decode('Arrêté à la somme de : SIX MILLES TREIZE IRHAMS ET QUARANTE QUATRE CENTIMES'));
 	    $this->SetXY(130,$this->getY()+10);
-	    $this->Cell(0,0,"SETAT LE : 03/12/2012");
+	    $this->Cell(0,0,"SETAT LE : ".DATE('d/m/Y'));
 	    $this->SetXY($this->getX()-188,$this->getY()+30);
 	    $this->Cell(0,0,"LE PRESIDENT : ");
 	    $this->SetXY(130,$this->getY());
 	    $this->Cell(0,0,"LE DOYEN : ");
-
+	    $this->Output($chemin,'F');
 	}
 
 
 }
 /*			$donnes = Heures::getBySem(1,"s1","2014/2015","sup");
 			$pdf = new PDF();
-			$pdf->SetFont('Arial','',10);
-			$pdf->AddPage();
 
 			$pdf->FancyTable($donnes,"BK275058");
 			$pdf->Output();*/

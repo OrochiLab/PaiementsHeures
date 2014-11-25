@@ -154,11 +154,14 @@
 				//*****************
 				$Vacation_prof = new PDF_2();
 				$Vacation_prof->print_certificat('../Pieces_Justificatifs/Ordres_paiements/Ordres_paiements-Vac-Prof -'.$this->getcinProf().'--'.$this->getProf()->getNom().'.pdf',$this->getYear(),'I','20','20','Frais Vacation','Percepeteur de Khouribga',$montant="9999.99");
-				
+				//*****************
+				$Recap_Vac = new PDF_7();
+				$Recap_Vac->FancyTable('../Pieces_Justificatifs/Etat_Recapitulatif_vac/Etat_Recapitulatif_Vac - '.$this->getcinProf().'--'.$this->getProf()->getNom().'.pdf',$this->getDonnes(),$this->getProf()->getCin(),$this->getProf()->getNom().' '.$this->getProf()->getPrenom(),$this->getProf()->getGrade()->getLibelle(),$this->getProf()->getGrade()->getId(),$this->getProf()->getEtablissement()->getLibelle(),$this->getProf()->getSom(),$this->getYear(),$this->getProf()->getSom(),$this->getFrais());
+
 			}
 		}
 	}
-	$pdf = new PdfGenerator("s1","2014/2015","sup","BK275058");
+	$pdf = new PdfGenerator("s1","2014/2015","vac","BK275058");
 	
 	$pdf->generation();
 ?>
