@@ -1,6 +1,7 @@
 <?php
 		require_once('../pdf/fpdf.php');
 		require_once('../Metier/Heures.class.php');
+		require_once ('../Metier/Professeur.class.php');
 		class PDF extends FPDF
 		{
 		// En-tête
@@ -30,7 +31,7 @@
 			}		
 
 	// Colored table
-	function FancyTable($data)
+	function FancyTable($data,$cin)
 	{	
 		$header = array('MOIS', 'ANNEE', "NOMBRE D'HEURE DE VACCATIONS", 'TAUX HORAIRE','TOTAL');
 	    // Colors, line width and bold font
@@ -51,19 +52,16 @@
 	    // Data
 	    $fill = false;
 	    $aa  = array('2021','2020','2558' );
+	    $prof = Professeur::getProfesseur($cin);
+
 	    for($i=0;$i<count($data);$i++)
 	    {
 
-	        $this->Cell($w[4],6,$data[$i]['mois'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['annee'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['total'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['lundi'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['mardi'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['mercredi'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['jeudi'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['vendredi'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['samedi'],'LR',0,'L',$fill);
-			$this->Cell($w[4],6,$data[$i]['dimanche'],'LR',0,'L',$fill);
+	        $this->Cell($w[0],6,$data[$i]['mois'],'LR',0,'L',$fill);
+			$this->Cell($w[1],6,$data[$i]['annee'],'LR',0,'L',$fill);
+			$this->Cell($w[2],6,$data[$i]['total'],'C',0,'C',$fill);
+			$this->Cell($w[3],6,$prof->getGrade()->getIndemnite(),'C',0,'C',$fill);
+			$this->Cell($w[4],6,($prof->getGrade()->getIndemnite())*$data[$i]['total']	,'LR',0,'L',$fill);
 	        $this->Ln();
 	        $fill = !$fill;
 	    }
@@ -73,11 +71,11 @@
 
 
 }
-$donnes = Heures::getBySem(1,'s1','2014/2015','sup');
+			$donnes = Heures::getBySem($_POST['id_prof'],$_POST['semestre'],$_POST['annee'],$_POST['htype']);
 			$pdf = new PDF();
 			$pdf->SetFont('Arial','',10);
 			$pdf->AddPage();
 
-			$pdf->FancyTable($donnes);
+			$pdf->FancyTable($donnes,$_POST['cin']);
 			$pdf->Output();
 ?>
