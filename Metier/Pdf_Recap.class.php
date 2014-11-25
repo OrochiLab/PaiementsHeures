@@ -82,21 +82,54 @@
 
 	        $this->Cell($w[0],6,$data[$i]['mois'],'LR',0,'L',$fill);
 			$this->Cell($w[1],6,$data[$i]['annee'],'LR',0,'L',$fill);
-			$this->Cell($w[2],6,$data[$i]['total'],'C',0,'C',$fill);
-			$this->Cell($w[3],6,$prof->getGrade()->getIndemnite(),'C',0,'C',$fill);
+			$this->Cell($w[2],6,$data[$i]['total'],'LR',0,'C',$fill);
+			$this->Cell($w[3],6,$prof->getGrade()->getIndemnite(),'LR',0,'C',$fill);
 			$this->Cell($w[4],6,($prof->getGrade()->getIndemnite())*$data[$i]['total']	,'LR',0,'L',$fill);
 	        $this->Ln();
 	        $fill = !$fill;
 	    }
 	    // Closing line
 	    $this->Cell(array_sum($w),0,'','T');
-	    $this->MultiCell(array_sum($w)-7,0,$this->Rect($this->getX()-55, $this->getY(), 55, 7));
-	    $this->MultiCell(array_sum($w)-7,5,$this->Rect($this->getX()+113, $this->getY(), 28, 7));
-	    $this->SetXY($this->getX()+113,$this->getY());
+	    $this->MultiCell(array_sum($w)-7,0,$this->Rect($this->getX()-54, $this->getY(), 54, 6));
+	    $this->MultiCell(array_sum($w)-7,5,$this->Rect($this->getX()+114, $this->getY(), 27, 6));
+	    $this->SetXY($this->getX()+113,$this->getY()-2);
 	    $this->Cell(0,0,'TOTAL');
-		$this->SetXY($this->getX()-168,$this->getY()+5);
+	   	$this->SetXY($this->getX()-45,$this->getY());
+	    $this->Cell(0,0,'8640.00');
+		$this->SetXY(10,$this->getY()+5);
 		$this->MultiCell(0,5,utf8_decode("Arrêté à la somme de : Huit milles siw quarante DHS"));
-		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT"));
+		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT :  "));
+		$this->SetXY(75,$this->getY()+15);
+		$this->SetFont("Times","BU",12);
+		$this->MultiCell(0,5,utf8_decode("Décompte des heures supplémentaires"));
+		$this->Ln(5);
+		$this->SetFont("Arial","",10);
+		$header_2 = array('Montant brut', 'Frais professionnelle 20%', "Montant imposable", 'Impôt','Montant Net');
+	    $w = array(30, 50, 35, 30, 30);
+	    for($i=0;$i<count($header);$i++)
+	        $this->Cell($w[$i],7,utf8_decode($header_2[$i]),1,0,'C',true);
+	    $this->Ln();
+	    // Color and font restoration
+	    $this->SetFillColor(220,235,255);
+	    $this->SetTextColor(0);
+	    $this->SetFont('');
+
+	        $this->Cell($w[0],6,"8640.00",'LR',0,'C',$fill);
+			$this->Cell($w[1],6,"1728",'LR',0,'C',$fill);
+			$this->Cell($w[2],6,"6912.00",'LR',0,'C',$fill);
+			$this->Cell($w[3],6,"2626.56",'C',0,'C',$fill);
+			$this->Cell($w[4],6,"6013.44",'LR',0,'C',$fill);
+	        $this->Ln();
+	        $fill = !$fill;
+	    $this->Cell(array_sum($w),0,'','T');
+	    $this->Ln(4);
+	    $this->Cell(0,0,utf8_decode('Arrêté à la somme de : SIX MILLES TREIZE IRHAMS ET QUARANTE QUATRE CENTIMES'));
+	    $this->SetXY(130,$this->getY()+10);
+	    $this->Cell(0,0,"Khouribga Le : 03/12/2012");
+	    $this->SetXY($this->getX()-188,$this->getY()+30);
+	    $this->Cell(0,0,"LE PRESIDENT : ");
+	    $this->SetXY(130,$this->getY());
+	    $this->Cell(0,0,"LE DOYEN : ");
 
 	}
 
