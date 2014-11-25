@@ -64,10 +64,10 @@ session_start();
 		}
 		}
 		
-		if(isset($_POST['cin']))
+		if(isset($_POST['cin_login']))
 		{
 	
-		$prof = Professeur::getProfesseur($_POST['cin']);
+		$prof = Professeur::getProfesseur($_POST['cin_login']);
 		if(isset($prof))
 		{
 			$_SESSION['type']='prof';
@@ -192,6 +192,30 @@ session_start();
                     <span>Heures</span>
                 </a>
             </li>	
+			<?php
+			}
+			
+			if(isset($_SESSION['type']) and $_SESSION['type']!='prof')
+			{
+			?>
+			<li class="<?php echo (($_GET['page']=='panel_admin')?'active':'');?>">
+				<?php
+				if($_GET['page']=='panel_admin')
+				{
+				?>
+				<div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+				<?php
+				}
+				?>
+                <a href="?page=panel_admin">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Utilisateurs</span>
+                </a>
+            </li>
+			
 			<?php
 			}
 			?>

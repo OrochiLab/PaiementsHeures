@@ -64,7 +64,7 @@ $prof = Professeur::getProfesseur($_SESSION['cin']);
 		<tr>
 			<td style="text-align:center"><?php echo explode('#',$tab[$i])[0]; ?></td>
 			<td style="text-align:center"><span class="label label-success"><?php echo explode('#',$tab[$i])[1]; ?></span></td>
-			<td style="text-align:center"><?php echo ((explode('#',$tab[$i])[2]=='sup')?'Supplémentaires':'Vacation'); ?></td>
+			<td style="text-align:center"><?php echo ((explode('#',$tab[$i])[2]=='sup')?'<span class="label label-info">Supplémentaires</span>':'<span class="label">Vacation</span>'); ?></td>
 			<td style="text-align:center"><?php echo explode('#',$tab[$i])[3]; ?></td>
 			<td style="text-align:center"><?php echo explode('#',$tab[$i])[4]; ?></td>
 

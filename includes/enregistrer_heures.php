@@ -77,8 +77,8 @@ if(isset($_POST['htype']) and isset($_POST['cin_prof']))
 	
 	
 	</tr>
-	</table>
-	<input type="submit" value="Valider" name="valider"/>
+	</table><br/>
+	<input   class="btn-flat success" type="submit" value="Valider" name="valider"/>
 	</form>
 	
 	

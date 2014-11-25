@@ -30,7 +30,7 @@ if(isset($_POST['cin']))
 		<tr>
 			<td style="text-align:center"><?php echo explode('#',$tab[$i])[0]; ?></td>
 			<td style="text-align:center"><span class="label label-success"><?php echo explode('#',$tab[$i])[1]; ?></span></td>
-			<td style="text-align:center"><?php echo ((explode('#',$tab[$i])[2]=='sup')?'Supplémentaires':'Vacation'); ?></td>
+			<td style="text-align:center"><?php echo ((explode('#',$tab[$i])[2]=='sup')?'<span class="label label-info">Supplémentaires</span>':'<span class="label">Vacation</span>'); ?></td>
 			<td style="text-align:center"><?php echo explode('#',$tab[$i])[3]; ?></td>
 			<td style="text-align:center"><?php echo explode('#',$tab[$i])[4]; ?></td>
 
@@ -41,24 +41,30 @@ if(isset($_POST['cin']))
 	
 		</tbody>
 	</table>
-	<!--Metier/Pdf_Recap.class.php-->
+	
+	
+<div class="container-fluid">
+	<div id="pad-wrapper" class="form-page">
+		<div class="row-fluid form-wrapper">
+			<!-- left column -->
+			<div class="span8 column">
 	<form action="?page=details_heures" method="post">
-	<pre>
-Heures   : <input type="radio" name="htype" value="sup" checked="checked"/> Supplémentaires <input type="radio" name="htype" value="vac"/> Vacation
+<label>Heures : </label><input type="radio" name="htype" value="sup" checked="checked"/> Supplémentaires <input type="radio" name="htype" value="vac"/> Vacation
 
-Semestre : <input type="radio" name="semestre" value="s1" checked="checked"/> 1 <input type="radio" name="semestre" value="s2" /> 2
+<label>Semestre : </label><input  type="radio" name="semestre" value="s1" checked="checked"/> 1 <input type="radio" name="semestre" value="s2" /> 2
 
-Année    : <select name="annee">
+<label>Année universitaire</label><select  class="span6" name="annee">
 <option value="2013/2014">2013/2014</option>
 <option value="2014/2015">2014/2015</option>
-</select>
+</select><br/>
 <input type="hidden" name="cin" value="<?php echo $prof->getCin(); ?>" />
 <input type="hidden" name="id_prof" value="<?php echo $prof->getId(); ?>" />
-<input type="submit" value="Valider" />
-
-	</pre>
+<input class="btn-flat success" type="submit" value="Valider" />
 	</form>
-	
+			</div>                
+		</div>
+	</div>
+</div>	
 	
 	
 	<?php

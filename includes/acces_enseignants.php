@@ -10,7 +10,7 @@
 	?>
 	<h5>Authentification des enseignants</h6>
 	<form action="?page=heures_prof" method="post">
-	<input class="span6" type="text" name="cin" placeholder="Votre CIN"/>
+	<input class="span6" type="text" name="cin_login" placeholder="Votre CIN"/>
 		<div class="action">
 		<input class="btn-flat success" type="submit" value="Valider"/>
 		</div>

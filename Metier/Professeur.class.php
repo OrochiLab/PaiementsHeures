@@ -109,6 +109,26 @@ class Professeur
 			die('Erreur : '.$e->getMessage());
 		}
 	}
+	
+	public static function getAllCins()
+	{
+		try{
+		
+		$cins = array();
+		$rep = Database::getConnection()->query('select cin from professeurs');
+		
+		while($donnes=$rep->fetch())
+		{
+			$cins[] = $donnes['cin'];
+		}
+		
+		return $cins;
+		
+		}catch(Exception $e)
+		{
+			die('Erreur : '.$e->getMessage());
+		}
+	}
 
 }
 
