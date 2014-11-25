@@ -35,13 +35,13 @@
 		
 			//print pdf demande
 
-			function print_certificat($chemin)
+			function print_certificat($chemin,$frais,$year,$NomPrenom)
 			{	
 				$this->SetFont('Arial','B',10);
 				// Instanciation de la classe dérivée
 				$this->AliasNbPages();
 				$this->AddPage();
-				$this->MultiCell(0,10,"EXCERCICE DU 01/01/2009 AU 31/12/2009");
+				$this->MultiCell(0,10,"EXCERCICE DU ".$year);
 				//$this->SetFont('Times','',12);
 				$this->Ln(2);
 				$this->Cell(10);
@@ -91,21 +91,21 @@
 				$this->setXY(65,102);
 				$this->Cell(10,6,"35%");
 				$this->setXY(95,102);
-				$this->Cell(10,6,"8640.00");
+				$this->Cell(10,6,$frais['brut']);
 				$this->setXY(125,102);
-				$this->Cell(10,6,"2626.56");
+				$this->Cell(10,6,$frais['impot']);
 				$this->setXY(155,102);
-				$this->Cell(10,6,"6013.44");
+				$this->Cell(10,6,$frais['net']);
 
 				//Footer du tableau
 				$this->SetXY(40,137);
 				$this->Cell(10,6,"Total ");
 				$this->SetXY(100,137);
-				$this->Cell(10,6,"8640.00 ");
+				$this->Cell(10,6,$frais['brut']);
 				$this->SetXY(130,137);
-				$this->Cell(10,6,"2626.56 ");
+				$this->Cell(10,6,$frais['impot']);
 				$this->SetXY(160,137);
-				$this->Cell(10,6,"6013.44 ");
+				$this->Cell(10,6,$frais['net']);
 
 
 
