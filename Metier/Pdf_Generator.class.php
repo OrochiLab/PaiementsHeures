@@ -140,10 +140,6 @@
 				$Etat_prelevement_sup =  new PDF_3();
 				$Etat_prelevement_sup->print_certificat('../Pieces_Justificatifs/Etat_de_prelevement_heures_sup/Etat_de_prelevement_heures_sup - '.$this->getcinProf().'--'.$this->getProf()->getNom().'.pdf',$this->frais,$this->year,$this->getProf()->getNom().' '.$this->getProf()->getPrenom());
 				//*****************
-				$data = array("ouasmine","med","amine" ); ;
-				$Etat_somme_HSup = new PDF_5();
-				$Etat_somme_HSup->FancyTable('../Pieces_Justificatifs/Etat_de_somme_heures_sup/Etat_de_somme_heures_sup - '.$this->getcinProf().'--'.$this->getProf()->getNom().'.pdf',$data);
-				//*****************
 				$Recap_Sup = new PDF_6();
 				$Recap_Sup->FancyTable('../Pieces_Justificatifs/Etat_Recapitulatif_sup/Etat_Recapitulatif_sup - '.$this->getcinProf().'--'.$this->getProf()->getNom().'.pdf',$this->getDonnes(),$this->getProf()->getCin(),$this->getProf()->getNom().' '.$this->getProf()->getPrenom(),$this->getProf()->getGrade()->getLibelle(),$this->getProf()->getGrade()->getId(),$this->getProf()->getEtablissement()->getLibelle(),$this->getProf()->getSom(),$this->getYear(),$this->getProf()->getSom(),$this->getFrais());
 
@@ -163,8 +159,16 @@
 				
 			}
 		}
+		public function secretairePdf()
+		{
+			//*****************
+			$Etat_somme_HSup = new PDF_5();
+			$Etat_somme_HSup->FancyTable('../Pieces_Justificatifs/Etat_de_somme_heures_sup/Etat_de_somme_heures_sup - '.$this->getcinProf().'--'.$this->getProf()->getNom().'.pdf',$this->getDonnes(),$this->getProf()->getCin(),$this->getProf()->getNom().' '.$this->getProf()->getPrenom(),$this->getProf()->getGrade()->getLibelle(),$this->getProf()->getGrade()->getId(),$this->getProf()->getEtablissement()->getLibelle(),$this->getProf()->getSom(),$this->getYear(),$this->getProf()->getSom(),$this->getFrais());
+				
+		}
 	}
 	$pdf = new PdfGenerator("s1","2014/2015","sup","BK275058");
 	
-	$pdf->generation();
+	//$pdf->generation();
+	$pdf->secretairePdf();
 ?>
