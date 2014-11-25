@@ -1,7 +1,7 @@
 <?php
 		require_once('../pdf/fpdf.php');
 		//require_once('../Metier/Etudiant.class.php');
-		class PDF extends FPDF
+		class PDF_5 extends FPDF
 		{
 		// En-tête
 			function Header()
@@ -28,18 +28,12 @@
 			    // Numéro de page
 			    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 			}		
-	// Load data
-	function LoadData()
-	{
-	    $data = array("ouasmine"
-	    				,"med"
-	    				,"amine" ); ;
-	    return $data;
-	}
-
 	// Colored table
-	function FancyTable($data)
+	function FancyTable($chemin,$data)
 	{	
+		$this->SetFont('Arial','',10);
+		$this->AddPage();
+		$this->SetFont('Arial','',10);
 		$header = array('MOIS', 'ANNEE', "NOMBRE D'HEURE DE VACCATIONS", 'TAUX HORAIRE','TOTAL');
 	    // Colors, line width and bold font
 	    $this->SetFillColor(255,0,0);
@@ -72,14 +66,15 @@
 	    }
 	    // Closing line
 	    $this->Cell(array_sum($w),0,'','T');
+	    $this->Output($chemin,'F');
 	}
 }
 
-$pdf = new PDF();
+/*$pdf = new PDF();
 $data = $pdf->LoadData();
 $pdf->SetFont('Arial','',10);
 $pdf->AddPage();
 $pdf->FancyTable($data);
-$pdf->Output();
+$pdf->Output();*/
 	
 ?>

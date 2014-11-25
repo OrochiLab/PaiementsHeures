@@ -1,7 +1,7 @@
 <?php
 		require_once('../pdf/fpdf.php');
 		//require_once('../Metier/Etudiant.class.php');
-		class PDF extends FPDF
+		class PDF_3 extends FPDF
 		{
 		// En-tête
 			function Header()
@@ -35,7 +35,7 @@
 		
 			//print pdf demande
 
-			function print_certificat()
+			function print_certificat($chemin)
 			{	
 				$this->SetFont('Arial','B',10);
 				// Instanciation de la classe dérivée
@@ -120,11 +120,10 @@
 				$tab = explode("/",$today);
 				
 				//$this->Output('doc.pdf');
-				$this->Output();
+				$this->Output($chemin,'F');
 			}
 		}
 
 		
-	$doc =  new PDF();
-	$doc->print_certificat();		
+	
 ?>

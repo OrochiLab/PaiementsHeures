@@ -1,7 +1,7 @@
 <?php
 		require_once('../pdf/fpdf.php');
 		//require_once('../Metier/Etudiant.class.php');
-		class PDF extends FPDF
+		class PDF_4 extends FPDF
 		{
 		// En-tête
 			function Header()
@@ -130,7 +130,7 @@
 			}
 		}
 
-		
+/*		
 	$doc =  new PDF();
-	$doc->print_certificat();		
+	$doc->print_certificat();	*/	
 ?>

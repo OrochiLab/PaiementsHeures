@@ -2,7 +2,7 @@
 		require_once('../pdf/fpdf.php');
 		require_once('../Metier/Heures.class.php');
 		require_once ('../Metier/Professeur.class.php');
-		class PDF_6 extends FPDF
+		class PDF_7 extends FPDF
 		{
 		// En-tête
 			function Header()
@@ -31,10 +31,8 @@
 			}		
 
 	// Colored table
-	function FancyTable($chemin,$data,$cin)
+	function FancyTable($data,$cin)
 	{	
-		$this->SetFont('Arial','',10);
-		$this->AddPage();
 		$this->Cell(0,0,"UNIVERSITE HASSAN 1ER SETTAT");
 		$this->Ln(3);
 		$this->SetXY($this->getX()+120,$this->getY()-3);
@@ -45,17 +43,17 @@
 		$this->Cell(0,0,utf8_decode("APPLICATION DECRET N°2.08.11"));
 		$this->SetXY($this->getX()-160,$this->getY()+5);
 		$this->SetFont('Times','BU',14);
-		$this->MultiCell(0,0,utf8_decode("Etat des sommes dues pour heures supplémentaires"));
+		$this->MultiCell(0,0,utf8_decode("Etat des sommes dues pour heures vacations"));
 		$this->Ln(6);
 		$this->SetFont('Arial','',10);
 		$this->MultiCell(0,5,utf8_decode("S.O.M :  988726"));
 		$this->MultiCell(0,5,utf8_decode("NOM & PRENOM :  FLAN"));
 		$this->MultiCell(0,5,utf8_decode("GRADE :  PROFESSEUR DE L'ENSEIGNEMENT SUPERIR ASSISTANT"));
-		$this->MultiCell(0,5,utf8_decode("CATEGORIE :  PA"));
+		$this->MultiCell(0,5,utf8_decode("CATEGORIE :  PES"));
 		$this->MultiCell(0,5,utf8_decode("MATIERE :  PA"));
-		$this->MultiCell(0,5,utf8_decode("ETABLISSEMENT D'ORIGINE :  ENSA KHOURIBGA"));
+		$this->MultiCell(0,5,utf8_decode("ETABLISSEMENT D'ORIGINE :  FACULTE DES LETTRES DE BENI MELLAL"));
 		$this->MultiCell(0,5,utf8_decode("REFERENCE :  "));
-		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  48"));
+		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  54"));
 		$this->Ln(3);
 
 		$this->SetFont('Arial','',10);
@@ -103,12 +101,12 @@
 		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT :  "));
 		$this->SetXY(75,$this->getY()+15);
 		$this->SetFont("Times","BU",12);
-		$this->MultiCell(0,5,utf8_decode("Décompte des heures supplémentaires"));
+		$this->MultiCell(0,5,utf8_decode("Décompte des heures vacation"));
 		$this->Ln(5);
 		$this->SetFont("Arial","",10);
-		$header_2 = array('Montant brut', 'Frais professionnelle 20%', "Montant imposable", 'Impôt','Montant Net');
-	    $w = array(30, 50, 35, 30, 30);
-	    for($i=0;$i<count($header);$i++)
+		$header_2 = array('Montant brut', 'Impôt à 17%','Montant Net');
+	    $w = array(50, 50, 50);
+	    for($i=0;$i<count($header_2);$i++)
 	        $this->Cell($w[$i],7,utf8_decode($header_2[$i]),1,0,'C',true);
 	    $this->Ln();
 	    // Color and font restoration
@@ -119,28 +117,27 @@
 	        $this->Cell($w[0],6,"8640.00",'LR',0,'C',$fill);
 			$this->Cell($w[1],6,"1728",'LR',0,'C',$fill);
 			$this->Cell($w[2],6,"6912.00",'LR',0,'C',$fill);
-			$this->Cell($w[3],6,"2626.56",'C',0,'C',$fill);
-			$this->Cell($w[4],6,"6013.44",'LR',0,'C',$fill);
-	        $this->Ln();
+			$this->Ln();
 	        $fill = !$fill;
 	    $this->Cell(array_sum($w),0,'','T');
 	    $this->Ln(4);
 	    $this->Cell(0,0,utf8_decode('Arrêté à la somme de : SIX MILLES TREIZE IRHAMS ET QUARANTE QUATRE CENTIMES'));
 	    $this->SetXY(130,$this->getY()+10);
-	    $this->Cell(0,0,"Khouribga Le : 03/12/2012");
+	    $this->Cell(0,0,"SETAT LE : 03/12/2012");
 	    $this->SetXY($this->getX()-188,$this->getY()+30);
 	    $this->Cell(0,0,"LE PRESIDENT : ");
 	    $this->SetXY(130,$this->getY());
 	    $this->Cell(0,0,"LE DOYEN : ");
-	    $this->Output($chemin,'F');
+
 	}
 
 
 }
 /*			$donnes = Heures::getBySem(1,"s1","2014/2015","sup");
 			$pdf = new PDF();
-			
+			$pdf->SetFont('Arial','',10);
+			$pdf->AddPage();
 
 			$pdf->FancyTable($donnes,"BK275058");
-			);*/
+			$pdf->Output();*/
 ?>

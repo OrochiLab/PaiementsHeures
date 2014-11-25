@@ -1,7 +1,7 @@
 <?php
 		require_once('../pdf/fpdf.php');
 		//require_once('../Metier/Etudiant.class.php');
-		class PDF extends FPDF
+		class PDF_1 extends FPDF
 		{
 		// En-tête
 			function Header()
@@ -52,7 +52,7 @@
 			}
 		
 			//print pdf demande
-			function print_certificat($a,$b,$c,$d,$e,$f)
+			function print_certificat($chemin,$a,$b,$c,$d,$e,$f,$montant)
 			{	$tab = array('Excercice :  '.$a,'Article :  '.$b,'Paragraphe : '.$c,
 							'Ligne :  '.$d,'Rubriques Bugétaires :  '.$e,'Créancier :  '.$f,"Pièces Justificatifs :  ");
 				$piece = "-Etat de prélévement" ;
@@ -74,7 +74,7 @@
 				$this->Ln(5);
 				$this->SetFont('Arial','B',10);
 				$this->MultiCell(0,5,"Montant de l'ordre de paiement :    TROIS MILLEDEUX CENY QURANTE DHS");
-				$this->MultiCell(0,5,utf8_decode("Total à payer:                                      3240.00"));
+				$this->MultiCell(0,5,utf8_decode("Total à payer:                                      "$montant));
 
 				$this->MultiCell(0,0,$this->Rect(10, 195, 90, 10));
 				$this->SetXY($this->getX()+10,$this->getY()+12);
@@ -89,21 +89,21 @@
 				$this->MultiCell(0,5,"MODE DE PAIEMENTS");
 				$this->SetFont('Arial','',12);
 				$this->SetXY($this->getX(),$this->getY()+5);
-				$this->MultiCell(0,5,"Date : 00/00/000");
+				$this->MultiCell(0,5,"Date : ");
 				$this->MultiCell(0,5,"Signature du sous ordonnateur:");
 				$this->SetXY($this->getX()+90,$this->getY()-10);
-				$this->MultiCell(0,5,utf8_decode("Date du réglement : 00/00/000"));
+				$this->MultiCell(0,5,utf8_decode("Date du réglement : "));
 				$this->SetXY($this->getX()+90,$this->getY());
 				$this->MultiCell(0,5,utf8_decode("Visa du Trésorier Payeur"));
 				$this->MultiCell(0,0,$this->Rect(10, 205, 90, 50));
 				$this->Cell(110);
 				$this->MultiCell(0,0,$this->Rect(100, 205, 90, 50));
-				$this->Output();
+				$this->Output($chemin,'F');
 			}
 		}
 
-		
+/*		
 	$doc =  new PDF();
 
-	$doc->print_certificat('2010','I','20','10','Heure Supplémentaire','Enseignant');		
+	$doc->print_certificat('2010','I','20','10','Heure Supplémentaire','Enseignant');*/		
 ?>
