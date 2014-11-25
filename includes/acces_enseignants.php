@@ -1,15 +1,18 @@
-﻿<?php
+﻿
+<div class="row-fluid login-wrapper">
+	<div class="box">
+		<div class="content-wrap">
+			<h6>Authentification des enseignants</h6>
+<?php
 if(!isset($_SESSION['id']))
 {
 ?>
 
 <form action="?page=heures_prof" method="post">
-
-<pre>
-CIN               : <input type="text" name="cin"/>
-
-<input type="submit" value="Valider"/>
-</pre>
+<input class="span6" type="text" name="cin" placeholder="Votre CIN"/>
+	<div class="action">
+	<input class="btn-glow primary signup" type="submit" value="Valider"/>
+	</div>
 </form>
 <?php
 }
@@ -20,3 +23,6 @@ else
 <?php
 }
 ?>
+		</div>                
+    </div>
+</div>

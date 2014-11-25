@@ -1,4 +1,8 @@
-﻿<ul>
-	<li><a href="?page=prof">Accès Enseignants</a></li>
-	<li><a href="?page=administration">Accès Administration</a></li>
-</ul>
+﻿	<div class="span7 personal-info">
+		<div id="pad-wrapper">
+			<div class="alert alert-info">
+				<i class="icon-lightbulb"></i>
+				Bienvenue cher visiteur
+			</div>
+		</div>
+	</div>
