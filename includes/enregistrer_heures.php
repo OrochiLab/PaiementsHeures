@@ -1,4 +1,10 @@
-﻿<?php
+﻿
+<div class="container-fluid">
+	<div id="pad-wrapper" class="form-page">
+		<div class="row-fluid form-wrapper">
+			<!-- left column -->
+			<div class="span6 column">
+<?php
 if(isset($_POST['valider']))
 {
 	$tab = $_POST['tranches'];
@@ -22,22 +28,21 @@ if(isset($_POST['valider']))
 if(isset($_POST['htype']) and isset($_POST['cin_prof']))
 {
 	$prof = Professeur::getProfesseur($_POST['cin_prof']);
-	echo '<h4>Enregistrement d\'heures '.(($_POST['htype']=='sup')?'supplémentaires':' de vacation');
+	echo '<h3>Enregistrement d\'heures '.(($_POST['htype']=='sup')?'supplémentaires':' de vacation').'</h3><br/>';
 	?>
 	<form action="#" method="post">
 	<input type="hidden" name="htype" value="<?php echo $_POST['htype'];?>" />
 	<input type="hidden" name="id_prof" value="<?php echo $prof->getId();?>" />
 	
-	<pre>
-	Enseignant              : <input type="text" disabled="disabled" value="<?php echo $prof->getNom().' '.$prof->getPrenom() ?>" />
+	<label>Enseignant : </label><input class="span6" type="text" disabled="disabled" value="<?php echo $prof->getNom().' '.$prof->getPrenom() ?>" />
 	
-	Etablissement d'origine : <input type="text" disabled="disabled" value="<?php echo $prof->getEtablissement()->getLibelle() ?>" />
+	<label>Etablissement d'origine : </label><input class="span6" type="text" disabled="disabled" value="<?php echo $prof->getEtablissement()->getLibelle() ?>" />
 	
-	Date du jour            : <input type="date" name="dateh" />
+	<label>Date du jour : </label><input class="span6" type="date" name="dateh" />
 	
-	Nombre d'heures         : <input type="text" name="nbre" size="2" />
+	<label>Nombre d'heures : </label><input class="span6" type="text" name="nbre" size="2" />
 	
-	Etablissement           : <select name="etab" >
+	<label>Etablissement : </label><select class="span6" name="etab" >
 	<?php 
 	$tab = Etablissement::getAll();
 	for($i=0;$i<count($tab);$i++)
@@ -48,29 +53,40 @@ if(isset($_POST['htype']) and isset($_POST['cin_prof']))
 	?>
 	</select>
 	
-	Tranches                : 
+	<label>Tranches : </label>
+	<table>
+	<tr>
+	<td><input type="checkbox" name="tranches[]" value="8h - 9h"/> 8h - 9h</td>
+	<td><input type="checkbox" name="tranches[]" value="14h - 15h"/> 14h - 15h</td>
+	</tr>
+	<tr>
+	<td><input type="checkbox" name="tranches[]" value="9h - 10h"/> 9h - 10h</td>
+	<td><input type="checkbox" name="tranches[]" value="15h - 16h"/> 15h - 16h</td>
+	</tr>
+	<tr>
+	<td><input type="checkbox" name="tranches[]" value="10h - 11h"/> 10h - 11h</td>
+	<td><input type="checkbox" name="tranches[]" value="16h - 17h"/> 16h - 17h</td>
+	</tr>
+	<tr>
+	<td><input type="checkbox" name="tranches[]" value="11h - 12h"/> 11h - 12h</td>
+	<td><input type="checkbox" name="tranches[]" value="17h - 18h"/> 17h - 18h</td>
+	</tr>
+	<tr>
 	
-	<input type="checkbox" name="tranches[]" value="8h - 9h"/> 8h - 9h
-	<input type="checkbox" name="tranches[]" value="9h - 10h"/> 9h - 10h
-	<input type="checkbox" name="tranches[]" value="10h - 11h"/> 10h - 11h
-	<input type="checkbox" name="tranches[]" value="11h - 12h"/> 11h - 12h
-	<input type="checkbox" name="tranches[]" value="14h - 15h"/> 14h - 15h
-	<input type="checkbox" name="tranches[]" value="15h - 16h"/> 15h - 16h
-	<input type="checkbox" name="tranches[]" value="16h - 17h"/> 16h - 17h
-	<input type="checkbox" name="tranches[]" value="17h - 18h"/> 17h - 18h
-
+	
+	
+	
+	</tr>
+	</table>
 	<input type="submit" value="Valider" name="valider"/>
-	</pre>
 	</form>
 	
 	
 	<?php
 
 }
-
-
-
-
-
-
 ?>
+			</div>                
+		</div>
+	</div>
+</div>

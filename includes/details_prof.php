@@ -8,32 +8,38 @@ if(isset($_POST['cin']))
 	{
 ?>
 
-<h4>Liste des heures supplémentaires/de vacation du professeur <?php echo $prof->getNom().' '.$prof->getPrenom();?></h4>
-	<table border="1">
-		<tr>
-			<th>Date du jour</th>
-			<th>Nombre d'heures</th>
-			<th>Type d'heures</th>
-			<th>Tranches</th>
-			<th>Etablissement</th>
-		</tr>
+<h4>Liste des heures supplémentaires/de vacation du professeur <strong><?php echo $prof->getNom().' '.$prof->getPrenom();?></strong></h4><br/>
+	<table class="table table-hover" align="center">
+		<thead>
+			<tr>
+				<th style="text-align:center">Date du jour</th>
+				<th style="text-align:center">Nombre d'heures</th>
+				<th style="text-align:center">Type d'heures</th>
+				<th style="text-align:center">Tranches</th>
+				<th style="text-align:center">Etablissement</th>
+			</tr>
+		</thead>
+		
+		<tbody>
 	<?php
+	
 	$tab = Heures::getByProf($prof->getCin());
 	for($i=0;$i<count($tab);$i++)
 	{
 	?>
 		<tr>
-			<td><?php echo explode('#',$tab[$i])[0]; ?></td>
-			<td><?php echo explode('#',$tab[$i])[1]; ?></td>
-			<td><?php echo ((explode('#',$tab[$i])[2]=='sup')?'Supplémentaires':'Vacation'); ?></td>
-			<td><?php echo explode('#',$tab[$i])[3]; ?></td>
-			<td><?php echo explode('#',$tab[$i])[4]; ?></td>
+			<td style="text-align:center"><?php echo explode('#',$tab[$i])[0]; ?></td>
+			<td style="text-align:center"><span class="label label-success"><?php echo explode('#',$tab[$i])[1]; ?></span></td>
+			<td style="text-align:center"><?php echo ((explode('#',$tab[$i])[2]=='sup')?'Supplémentaires':'Vacation'); ?></td>
+			<td style="text-align:center"><?php echo explode('#',$tab[$i])[3]; ?></td>
+			<td style="text-align:center"><?php echo explode('#',$tab[$i])[4]; ?></td>
 
 		</tr>
 	<?php
 	}
 	?>
 	
+		</tbody>
 	</table>
 	<!--Metier/Pdf_Recap.class.php-->
 	<form action="?page=details_heures" method="post">
