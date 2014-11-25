@@ -2,14 +2,13 @@
 
 
 
-if(isset($_POST['login']) and isset($_POST['password']))
+if(isset($_SESSION['id']))
 {
 	
-$admin = Responsable::getResponsable($_POST['login'],$_POST['password']);
+	$admin = Responsable::getResponsable($_POST['login'],$_POST['password']);
 	if(isset($admin))
 	{
 	?>
-	<h4><?php echo ($admin->getType()=='admin'?'Administrateur':'Secretaire').' : '.$admin->getNom().' '.$admin->getPrenom();?></h4>
 	<form action="?page=details_prof" method="post">
 	<pre>
 Entrez le CIN de l'enseignant : <input type="text" name="cin" size="5"/>
@@ -33,7 +32,7 @@ Entrez le CIN de l'enseignant : <input type="text" name="cin" size="5"/>
 }
 else
 {
-	echo 'Access Denied';
+	echo 'Veuillez vous connecter';
 
 }
 

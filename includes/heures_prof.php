@@ -2,13 +2,13 @@
 
 
 
-if(isset($_POST['cin']))
+if(isset($_SESSION['cin']))
 {
 	
-$prof = Professeur::getProfesseur($_POST['cin']);
+$prof = Professeur::getProfesseur($_SESSION['cin']);
 	if(isset($prof))
 	{
-		echo 'Bonjour : <strong>'.$prof->getNom().' '.$prof->getPrenom().'</strong><br/><br/>';
+		echo '<br/><br/>';
 		echo 'Vous etes <strong>'.$prof->getGrade()->getLibelle().'</strong> à <strong>'.$prof->getEtablissement()->getLibelle().' - '.$prof->getEtablissement()->getUniversite()->getLibelle().'</strong>';
 	
 	?>
@@ -71,7 +71,7 @@ $prof = Professeur::getProfesseur($_POST['cin']);
 }
 else
 {
-	echo 'Access Denied';
+	echo 'Access Denied, compte invalide';
 
 }
 
