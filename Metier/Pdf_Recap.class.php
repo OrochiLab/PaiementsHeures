@@ -33,13 +33,36 @@
 	// Colored table
 	function FancyTable($data,$cin)
 	{	
+		$this->Cell(0,0,"UNIVERSITE HASSAN 1ER SETTAT");
+		$this->Ln(3);
+		$this->SetXY($this->getX()+120,$this->getY()-3);
+		$this->MultiCell(0,0,"EX. du 01/01/2010 au 31/12/2010 ART.II");
+		$this->SetXY($this->getX()+145,$this->getY()+5);
+		$this->Cell(0,0,"P:85L.10");
+		$this->SetXY($this->getX()-65,$this->getY()+5);
+		$this->Cell(0,0,utf8_decode("APPLICATION DECRET N°2.08.11"));
+		$this->SetXY($this->getX()-160,$this->getY()+5);
+		$this->SetFont('Times','BU',14);
+		$this->MultiCell(0,0,utf8_decode("Etat des sommes dues pour heures supplémentaires"));
+		$this->Ln(6);
+		$this->SetFont('Arial','',10);
+		$this->MultiCell(0,5,utf8_decode("S.O.M :  988726"));
+		$this->MultiCell(0,5,utf8_decode("NOM & PRENOM :  FLAN"));
+		$this->MultiCell(0,5,utf8_decode("GRADE :  PROFESSEUR DE L'ENSEIGNEMENT SUPERIR ASSISTANT"));
+		$this->MultiCell(0,5,utf8_decode("CATEGORIE :  PA"));
+		$this->MultiCell(0,5,utf8_decode("MATIERE :  PA"));
+		$this->MultiCell(0,5,utf8_decode("ETABLISSEMENT D'ORIGINE :  ENSA KHOURIBGA"));
+		$this->MultiCell(0,5,utf8_decode("REFERENCE :  "));
+		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  48"));
+		$this->Ln(3);
+
+		$this->SetFont('Arial','',10);
 		$header = array('MOIS', 'ANNEE', "NOMBRE D'HEURE DE VACCATIONS", 'TAUX HORAIRE','TOTAL');
 	    // Colors, line width and bold font
 	    $this->SetFillColor(255,0,0);
 	    $this->SetTextColor(255);
 	    $this->SetDrawColor(128,0,0);
 	    $this->SetLineWidth(.3);
-	    $this->SetFont('','B');
 	    // Header
 	    $w = array(27, 17, 70, 27, 27);
 	    for($i=0;$i<count($header);$i++)
@@ -67,6 +90,14 @@
 	    }
 	    // Closing line
 	    $this->Cell(array_sum($w),0,'','T');
+	    $this->MultiCell(array_sum($w)-7,0,$this->Rect($this->getX()-55, $this->getY(), 55, 7));
+	    $this->MultiCell(array_sum($w)-7,5,$this->Rect($this->getX()+113, $this->getY(), 28, 7));
+	    $this->SetXY($this->getX()+113,$this->getY());
+	    $this->Cell(0,0,'TOTAL');
+		$this->SetXY($this->getX()-168,$this->getY()+5);
+		$this->MultiCell(0,5,utf8_decode("Arrêté à la somme de : Huit milles siw quarante DHS"));
+		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT"));
+
 	}
 
 
