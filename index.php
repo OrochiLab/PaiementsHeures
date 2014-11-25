@@ -135,8 +135,8 @@ session_start();
             </button>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="?page=prof">Accès Enseignants</a></li>
-                    <li><a href="?page=administration">Accès Administration</a></li>
+                    <li class="<?php echo (($_GET['page']=='prof')?'active':'');?>"><a href="?page=prof">Accès Enseignants</a></li>
+                    <li class="<?php echo (($_GET['page']=='administration')?'active':'');?>"><a href="?page=administration">Accès Administration</a></li>
                 </ul>
             </div>
             
@@ -154,16 +154,47 @@ session_start();
 	<!-- sidebar -->
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            <li class="active">
-                <div class="pointer">
+            <li class="<?php echo (($_GET['page']=='accueil')?'active':'');?>">
+                <?php
+				if($_GET['page']=='accueil')
+				{
+				?>
+				<div class="pointer">
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
+				<?php
+				}
+				?>
                 <a href="?page=accueil">
                     <i class="icon-home"></i>
                     <span>Accueil</span>
                 </a>
-            </li>            
+            </li>      
+			<?php 
+			if(isset($_SESSION['type']) and $_SESSION['type']=='prof')
+			{
+			?>
+			<li class="<?php echo (($_GET['page']=='heures_prof')?'active':'');?>">
+				<?php
+				if($_GET['page']=='heures_prof')
+				{
+				?>
+				<div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+				<?php
+				}
+				?>
+                <a href="?page=heures_prof">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Heures</span>
+                </a>
+            </li>	
+			<?php
+			}
+			?>
             <!--<li>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-group"></i>

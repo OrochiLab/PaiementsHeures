@@ -1,25 +1,34 @@
-﻿
+﻿<div class="container-fluid">
+	<div id="pad-wrapper" class="form-page">
+		<div class="row-fluid form-wrapper">
+			<!-- left column -->
+			<div class="span8 column">
+			
 <?php
 if(!isset($_SESSION['id']))
 {
 ?>
-
+<h5>Espace d'Administration</h6>
 <form action="?page=panel_admin" method="post">
-<h4>Espace d'administration</h4>
-<pre>
-Login          : <input type="text" name="login"/>
-
-Mot de passe   : <input type="password" name="password"/>
-
-<input type="submit" value="Valider"/>
-</pre>
+<input class="span6" type="text" name="login" placeholder="Votre login"/> <br/>
+<input class="span6" type="password" name="password" placeholder="Votre mot de passe"/>
+	<div class="action">
+		<input  class="btn-flat success" type="submit" value="Valider"/>
+	</div>
 </form>
 <?php
 }
 else
 {
 ?>
-<h4>Vous etes déjà connecté, veuillez vous déconnecter si vous souhaitez changer de compte</h4>
+	<div class="alert alert-error">
+		<i class="icon-remove-sign"></i>
+		Vous etes déjà connecté, veuillez vous déconnecter si vous souhaitez changer de compte
+	</div>
 <?php
 }
 ?>
+			</div>                
+		</div>
+	</div>
+</div>
