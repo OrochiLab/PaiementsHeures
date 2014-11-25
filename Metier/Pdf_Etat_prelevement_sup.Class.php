@@ -1,4 +1,5 @@
 <?php
+		require_once('NombreToHorof.class.php');
 		require_once('../pdf/fpdf.php');
 		//require_once('../Metier/Etudiant.class.php');
 		class PDF_3 extends FPDF
@@ -112,9 +113,9 @@
 				$this->Cell(110);
 				$this->MultiCell(0,0,$this->Rect(10, 95, 170, 50));
 				$this->SetXY(10,210);
-				$this->MultiCell(0,0,utf8_decode("Arrêté le présent état a la somme de : HUIT MILLES CENTS QUARANTE DHS"));
+				$this->MultiCell(0,0,utf8_decode("Arrêté le présent état a la somme de : ".utf8_decode(strtoupper(NombreToHorof($frais['brut'])))." DHS"));
 				$this->ln(5);
-				$this->MultiCell(0,0,utf8_decode("Total à payer : SIX MILLE TREIZE DHS QURANTE QUATRE CENTIMES"));
+				$this->MultiCell(0,0,utf8_decode("Total à payer : ".utf8_decode(strtoupper(NombreToHorof($frais['net'])))." DHS"));
 				//$this->MultiCell(0,)
 				$today = date('d/m/Y');
 				$tab = explode("/",$today);

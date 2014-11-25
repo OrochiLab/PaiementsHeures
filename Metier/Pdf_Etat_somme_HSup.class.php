@@ -54,7 +54,7 @@
 		//$this->MultiCell(0,5,utf8_decode("MATIERE :  --"));
 		$this->MultiCell(0,5,utf8_decode("ETABLISSEMENT D'ORIGINE :  ".$ets));
 		//$this->MultiCell(0,5,utf8_decode("REFERENCE :  --"));
-		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  ".$frais['nbreHeures']));
+		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  ".utf8_decode(strtoupper(NombreToHorof($frais['nbreHeures']))))." HEURES");
 		$this->Ln(3);
 
 		$this->SetFont('Times','',8);
@@ -105,8 +105,6 @@
 	   	$this->SetXY($this->getX()-27,$this->getY());
 	    $this->Cell(0,0,$frais['nbreHeures']);
 		$this->SetXY(10,$this->getY()+5);
-		$this->MultiCell(0,5,utf8_decode("Arrêté à la somme de : Huit milles siw quarante DHS"));
-		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT :  ".$nometprenom));
 		$this->SetXY(75,$this->getY()+15);
 		$this->SetFont("Times","BU",12);
 		$this->MultiCell(0,5,utf8_decode(""));

@@ -1,6 +1,7 @@
 <?php
 		require_once('../pdf/fpdf.php');
 		require_once('../Metier/Heures.class.php');
+		require_once('NombreToHorof.class.php');
 		require_once ('../Metier/Professeur.class.php');
 		class PDF_7 extends FPDF
 		{
@@ -53,7 +54,7 @@
 		$this->MultiCell(0,5,utf8_decode("GRADE :  ".$grade));
 		$this->MultiCell(0,5,utf8_decode("CATEGORIE :  ".$categorie));
 		$this->MultiCell(0,5,utf8_decode("ETABLISSEMENT D'ORIGINE :  ".$ets));
-		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  ".$frais['nbreHeures']));
+		$this->MultiCell(0,5,utf8_decode("NOMBRES D'HEURES ASSUREES :  ".utf8_decode(strtoupper(NombreToHorof($frais['nbreHeures'])))." HEURES"));
 		$this->Ln(3);
 
 		$this->SetFont('Arial','',10);
@@ -97,7 +98,7 @@
 	   	$this->SetXY($this->getX()-45,$this->getY());
 	    $this->Cell(0,0,$frais['brut']);
 		$this->SetXY(10,$this->getY()+5);
-		$this->MultiCell(0,5,utf8_decode("Arrêté à la somme de : Huit milles siw quarante DHS"));
+		$this->MultiCell(0,5,utf8_decode("Arrêté à la somme de : ".utf8_decode(strtoupper(NombreToHorof($frais['brut'])))." DHS"));
 		$this->MultiCell(0,5,utf8_decode("L'ENSEIGNANT :  ".$nometprenom));
 		$this->SetXY(75,$this->getY()+15);
 		$this->SetFont("Times","BU",12);
@@ -121,7 +122,7 @@
 	        $fill = !$fill;
 	    $this->Cell(array_sum($w),0,'','T');
 	    $this->Ln(4);
-	    $this->Cell(0,0,utf8_decode('Arrêté à la somme de : SIX MILLES TREIZE IRHAMS ET QUARANTE QUATRE CENTIMES'));
+	    $this->Cell(0,0,utf8_decode('Arrêté à la somme de : '.utf8_decode(strtoupper(NombreToHorof($frais['net']))).' DHS'));
 	    $this->SetXY(130,$this->getY()+10);
 	    $this->Cell(0,0,"SETAT LE : ".DATE('d/m/Y'));
 	    $this->SetXY($this->getX()-188,$this->getY()+30);

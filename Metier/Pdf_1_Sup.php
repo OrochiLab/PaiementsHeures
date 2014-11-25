@@ -1,4 +1,5 @@
 <?php
+		require_once('NombreToHorof.class.php');
 		require_once('../pdf/fpdf.php');
 		//require_once('../Metier/Etudiant.class.php');
 		class PDF_11 extends FPDF
@@ -76,7 +77,7 @@
 					$this->SetFont('Arial','B',10);
 					$this->MultiCell(0,5,"Montant de l'ordre de paiement :    ".$frais['net']);
 					$this->SetFont('Times','I',10);
-					$this->MultiCell(0,5,"SIX MILLE TREIZE DH QUARANTE QUATRE CENTIMES");
+					$this->MultiCell(0,5,utf8_decode(strtoupper(NombreToHorof($frais['net'])))." DHS");
 
 					$this->MultiCell(0,0,$this->Rect(10, 215, 90, 10));
 					$this->SetXY($this->getX()+10,$this->getY()+12);

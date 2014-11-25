@@ -167,7 +167,7 @@
 				
 		}
 	}
-	$pdf = new PdfGenerator("s1","2014/2015","sup","BK275058");
+	$pdf = new PdfGenerator("s1","2014/2015","vac","BK275058");
 	
 	$pdf->generation();
 	$pdf->secretairePdf();
