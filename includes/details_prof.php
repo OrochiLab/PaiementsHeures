@@ -35,7 +35,8 @@ if(isset($_POST['cin']))
 	?>
 	
 	</table>
-	<form action="Metier/Pdf_Recap.class.php" method="post">
+	<!--Metier/Pdf_Recap.class.php-->
+	<form action="?page=details_heures" method="post">
 	<pre>
 Heures   : <input type="radio" name="htype" value="sup" checked="checked"/> Supplémentaires <input type="radio" name="htype" value="vac"/> Vacation
 

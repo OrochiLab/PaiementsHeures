@@ -55,6 +55,51 @@ for($i=0;$i<count($donnes);$i++)
 </table>
 <?php
 }
-
-
 ?>
+<br/><br/>
+<table border="1">
+	<tr>
+		<th>Montant Brut</th>
+		<?php 
+		if($_POST['htype']=='sup')
+		{
+		?>
+		<th>Frais professionnelle 20%</th>
+		<th>Montant imposable</th>
+		<th>Impôt à 40%</th>
+		<th>Montant Net</th>
+		<?php
+		}
+		else
+		{
+		?>
+		<th>Impôt à 17%</th>
+		<th>Montant Net</th>
+		<?php
+		}
+		?>
+		
+	</tr>
+	<tr>
+		<td><?php echo $total; ?></td>
+		<?php 
+		if($_POST['htype']=='sup')
+		{
+		?>
+		<td><?php echo $total*0.2; ?></td>
+		<td><?php echo $total*0.8; ?></td>
+		<td><?php echo $total*0.8*0.4; ?></td>
+		<td><?php echo ($total*0.2)+($total*0.8*0.6);?></td>
+		<?php
+		}
+		else
+		{
+		?>
+		<td><?php echo $total*0.17; ?></td>
+		<td><?php echo $total-($total*0.17); ?></td>
+		<?php
+		}
+		?>
+	</tr>
+
+</table>
