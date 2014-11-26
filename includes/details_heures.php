@@ -1,8 +1,18 @@
 ﻿<?php
-if(isset($_POST['id_prof']))
+if(isset($_POST['id_prof']) and ($_SESSION['type']=='admin' or $_SESSION['type']=='secretaire'))
 {
 $donnes = Heures::getBySem($_POST['id_prof'],$_POST['semestre'],$_POST['annee'],$_POST['htype']);
 $prof = Professeur::getProfesseur($_POST['cin']);
+$chemin = '_'.$_POST['htype'].'_'.explode('/',$_POST['annee'])[0].'_'.explode('/',$_POST['annee'])[1].'_'.$_POST['semestre'].'_'.$prof->getCin().'.pdf';
+if(isset($prof))
+{
+	$pdf = new PdfGenerator($_POST['semestre'],$_POST['annee'],$_POST['htype'],$prof->getCin());
+	
+	if($_SESSION['type']=='admin')
+		$pdf->generation();
+	else
+		$pdf->secretairePdf();
+}
 ?>
 <table border="1">
 <tr>
@@ -16,14 +26,21 @@ $prof = Professeur::getProfesseur($_POST['cin']);
 	<th>Vendredi</th>
 	<th>Samedi</th>
 	<th>Dimanche</th>
+	<?php
+	if($_SESSION['type']=='admin')
+	{
+	?>
 	<th>Taux horaire</th>
 	<th>Total</th>
+	<?php
+	}
+	?>
 </tr>
 <?php
 $total=0;
 for($i=0;$i<count($donnes);$i++)
 {
-	$total+=300*($donnes[$i]['total']);
+	$total+=$prof->getGrade()->getIndemnite()*($donnes[$i]['total']);
 ?>
 <tr>
 	<td><?php echo $donnes[$i]['mois']; ?></td>
@@ -37,26 +54,40 @@ for($i=0;$i<count($donnes);$i++)
 	<td><?php echo $donnes[$i]['samedi']; ?></td>
 	<td><?php echo $donnes[$i]['dimanche']; ?></td>
 	<?php 
-	if($i==0)
+	if($_SESSION['type']=='admin')
 	{
-	?>
-	<td rowspan="<?php echo (($_POST['semestre']=='s1'?'6':'6'));?>"><?php echo $prof->getGrade()->getIndemnite(); ?></td>
-	<?php 
+		if($i==0)
+		{
+		?>
+		<td rowspan="<?php echo (($_POST['semestre']=='s1'?'6':'6'));?>"><?php echo $prof->getGrade()->getIndemnite(); ?></td>
+		<?php 
+		}
+		?>
+		<td><?php echo $prof->getGrade()->getIndemnite()*$donnes[$i]['total']; ?></td>
+	<?php
 	}
 	?>
-	<td><?php echo $prof->getGrade()->getIndemnite()*$donnes[$i]['total']; ?></td>
 </tr>
 <?php
 }
+?>
+<?php 
+	if($_SESSION['type']=='admin')
+	{
 ?>
 <tr>
 <td colspan="12" align="right"><strong>Total : <?php echo $total; ?></strong></td>
 </tr>
+	<?php
+	}
+	?>
 </table>
-<?php
-}
-?>
+
 <br/><br/>
+<?php 
+if($_SESSION['type']=='admin')
+{
+?>
 <table border="1">
 	<tr>
 		<th>Montant Brut</th>
@@ -103,3 +134,33 @@ for($i=0;$i<count($donnes);$i++)
 	</tr>
 
 </table>
+<br/>
+<?php
+if($_POST['htype']=='sup')
+{
+?>
+<a class="btn-flat default" target="_blank" href="Pieces_Justificatifs/Etat_Recapitulatif_sup/Etat_Recapitulatif<?php echo $chemin; ?>">Etat récapitulatif</a>
+<a class="btn-flat default"  target="_blank"  href="Pieces_Justificatifs/Etat_de_prelevement_heures_sup/Etat_de_prelevement_heures<?php echo $chemin; ?>">Etat de prélévement</a>
+<a class="btn-flat default"  target="_blank"  href="Pieces_Justificatifs/Ordres_paiements/Ordres_paiements_Prof<?php echo $chemin; ?>">Ordre Paiement (Professeur)</a>
+<a class="btn-flat default"  target="_blank"  href="Pieces_Justificatifs/Ordres_paiements/Ordres_paiements_Percepteur<?php echo $chemin; ?>">Ordre Paiement (Percepteur)</a>
+<?php
+}
+else
+{
+?>
+<a class="btn-flat default" target="_blank" href="Pieces_Justificatifs/Etat_Recapitulatif_vac/Etat_Recapitulatif<?php echo $chemin; ?>">Etat récapitulatif</a>
+<a class="btn-flat default"  target="_blank"  href="Pieces_Justificatifs/Etat_de_prelevement_heures_vac/Etat_de_prelevement_heures<?php echo $chemin; ?>">Etat de prélévement</a>
+<a class="btn-flat default"  target="_blank"  href="Pieces_Justificatifs/Ordres_paiements/Ordres_paiements_Prof<?php echo $chemin; ?>">Ordre Paiement (Professeur)</a>
+<a class="btn-flat default"  target="_blank"  href="Pieces_Justificatifs/Ordres_paiements/Ordres_paiements_Percepteur<?php echo $chemin; ?>">Ordre Paiement (Percepteur)</a>
+<?php
+}
+
+}
+else
+{
+?>
+<a class="btn-flat default"  target="_blank"  href="Pieces_Justificatifs/Etat_de_somme_heures_sup/Etat_de_somme_heures<?php echo substr($chemin,4); ?>">Etat de somme des heures</a>
+<?php
+}
+}
+?>

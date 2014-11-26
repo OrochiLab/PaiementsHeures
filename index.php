@@ -3,6 +3,19 @@ require_once('Metier/Professeur.class.php');
 require_once('Metier/Etablissement.class.php');
 require_once('Metier/Heures.class.php');
 require_once('Metier/Responsable.class.php');
+require_once('pdf/fpdf.php');
+require_once('Metier/Pdf_Generator.class.php');
+require_once('Metier/Pdf_1_Vacation.class.php');
+require_once('Metier/Pdf_2_Vacation.class.php');
+require_once('Metier/Pdf_Etat_prelevement_sup.Class.php');
+require_once('Metier/Pdf_Etat_prelevement_vacation.Class.php');
+require_once('Metier/Pdf_Etat_somme_HSup.class.php');
+require_once('Metier/Pdf_Recap.class.php');
+require_once('Metier/Pdf_Recap_vacation.class.php');
+require_once('Metier/Pdf_1_Sup.php');
+require_once('Metier/Pdf_2_Sup.php');
+require_once('Metier/NombreToHorof.class.php');
+
 session_start();
 ?>
 <!DOCTYPE HTML>
