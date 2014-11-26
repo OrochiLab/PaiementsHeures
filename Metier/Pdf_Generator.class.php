@@ -130,7 +130,7 @@
 				$Etat_prelevement_sup->print_certificat('Pieces_Justificatifs/Etat_de_prelevement_heures_sup/Etat_de_prelevement_heures_sup_'.explode('/',$this->getYear())[0].'_'.explode('/',$this->getYear())[1].'_'.$this->getSemestre().'_'.$this->getcinProf().'.pdf',$this->frais,$this->year,$this->getProf()->getNom().' '.$this->getProf()->getPrenom());
 				//*****************
 				$Recap_Sup = new PDF_6();
-				$Recap_Sup->FancyTable('Pieces_Justificatifs/Etat_Recapitulatif_sup/Etat_Recapitulatif_sup_'.explode('/',$this->getYear())[0].'_'.explode('/',$this->getYear())[1].'_'.$this->getSemestre().'_'.$this->getcinProf().'.pdf',$this->getDonnes(),$this->getProf()->getCin(),$this->getProf()->getNom().' '.$this->getProf()->getPrenom(),$this->getProf()->getGrade()->getLibelle(),$this->getProf()->getGrade()->getId(),$this->getProf()->getEtablissement()->getLibelle(),$this->getProf()->getSom(),$this->getYear(),$this->getProf()->getSom(),$this->getFrais());
+				$Recap_Sup->FancyTable('Pieces_Justificatifs/Etat_Recapitulatif_sup/Etat_Recapitulatif_sup_'.explode('/',$this->getYear())[0].'_'.explode('/',$this->getYear())[1].'_'.$this->getSemestre().'_'.$this->getcinProf().'.pdf',$this->getDonnes(),$this->getProf()->getCin(),$this->getProf()->getNom().' '.$this->getProf()->getPrenom(),$this->getProf()->getGrade()->getLibelle(),$this->getProf()->getGrade()->getId(),$this->getProf()->getEtablissement()->getLibelle(),(($this->getProf() instanceof ProfesseurActivite)?$this->getProf()->getSom():'--'),$this->getYear(),(($this->getProf() instanceof ProfesseurActivite)?$this->getProf()->getSom():'--'),$this->getFrais());
 
 			}else{
 				//*****************

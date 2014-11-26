@@ -49,7 +49,7 @@ if(isset($_POST['cin']))
 			<!-- left column -->
 			<div class="span8 column">
 	<form action="?page=details_heures" method="post">
-<label>Heures : </label><input type="radio" name="htype" value="sup" checked="checked"/> Supplémentaires <input type="radio" name="htype" value="vac"/> Vacation
+<label>Heures : </label><?php if($prof instanceof ProfesseurActivite){?><input type="radio" name="htype" value="sup" checked="checked"/> Supplémentaires <?php }?><input type="radio" name="htype" value="vac" checked="checked"/> Vacation
 
 <label>Semestre : </label><input  type="radio" name="semestre" value="s1" checked="checked"/> 1 <input type="radio" name="semestre" value="s2" /> 2
 
