@@ -88,7 +88,7 @@
 
 				//deuxieme ligne
 				$this->setXY(65,102);
-				$this->Cell(10,6,"35%");
+				$this->Cell(10,6,"40%");
 				$this->setXY(95,102);
 				$this->Cell(10,6,$frais['brut']);
 				$this->setXY(125,102);
