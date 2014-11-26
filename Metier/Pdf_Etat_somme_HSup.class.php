@@ -1,13 +1,12 @@
 <?php
-		require_once('../pdf/fpdf.php');
-		//require_once('../Metier/Etudiant.class.php');
+
 		class PDF_5 extends FPDF
 		{
 		// En-tête
 			function Header()
 			{
 			    // Logo
-			    $this->Image('../img/logo_ensak.jpg',10,6,30);
+			    $this->Image('img/logo_ensak.jpg',10,6,30);
 			    // Police Arial gras 15
 			    $this->SetFont('Arial','B',13);
 			    // Décalage à droite
